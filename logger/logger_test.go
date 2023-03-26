@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func TestRunningLog(t *testing.T) {
+func TestGenerateFields(t *testing.T) {
 
 	ctx := context.Background()
 
@@ -21,7 +21,7 @@ func TestRunningLog(t *testing.T) {
 
 	ctx = context.WithValue(ctx, DATA, data)
 
-	v := generateFields(ctx)
+	v := generateFields(ctx, false)
 
 	fmt.Println(v)
 }

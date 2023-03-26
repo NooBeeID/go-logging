@@ -13,7 +13,7 @@ func main() {
 	log := logger.NewLog()
 
 	log.SetLevel(int(logrus.ErrorLevel))
-
+	log.SetReportCaller(true)
 	ctx := context.Background()
 
 	data := map[logger.LogKey]interface{}{
@@ -32,6 +32,9 @@ func main() {
 	log.Errorf(ctx, "Error %s", "error message")
 
 	log.SetLevel(int(logrus.DebugLevel))
+
+	// remove file caller
+	log.SetReportCaller(false)
 	log.Infof(ctx, "Info %s", "info message")
 
 }
