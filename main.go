@@ -4,12 +4,18 @@ import (
 	"context"
 	"time"
 
+	"github.com/NooBeeID/go-logging/example"
 	"github.com/NooBeeID/go-logging/logger"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
+	base()
+	example.StacktraceWithData()
+}
+
+func base() {
 	log := logger.NewLog()
 
 	log.SetLevel(int(logrus.ErrorLevel))
@@ -36,5 +42,4 @@ func main() {
 	// remove file caller
 	log.SetReportCaller(false)
 	log.Infof(ctx, "Info %s", "info message")
-
 }

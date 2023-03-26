@@ -69,13 +69,6 @@ func generateFields(ctx context.Context, report bool) map[string]interface{} {
 	val := ctx.Value(DATA)
 	var data map[string]interface{} = map[string]interface{}{}
 
-	if val == nil {
-		return data
-	}
-	for k, v := range val.(map[LogKey]interface{}) {
-		data[strings.ToLower(string(k))] = v
-	}
-
 	if report {
 		// get current directory
 		path, _ := os.Getwd()
@@ -92,6 +85,13 @@ func generateFields(ctx context.Context, report bool) map[string]interface{} {
 
 		// add new field to handle file
 		data["file"] = fmt.Sprintf("%s.%v", myFile, line)
+	}
+
+	if val == nil {
+		return data
+	}
+	for k, v := range val.(map[LogKey]interface{}) {
+		data[strings.ToLower(string(k))] = v
 	}
 
 	return data
